@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proxy - Crypto investment platform where you can grow and potentially double your income through secure crypto strategies.">
+    <title>Proxy | Crypto Investment Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #020617;
+            --surface: rgba(15, 23, 42, 0.95);
+            --surface-strong: rgba(15, 23, 42, 1);
+            --blue: #2563eb;
+            --blue-dark: #1e40af;
+            --accent: #38bdf8;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        html, body {
+            min-height: 100%;
+            background: radial-gradient(circle at top, rgba(37, 99, 235, 0.22), transparent 35%),
+                        linear-gradient(180deg, #020617 0%, #050a1b 100%);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(24px);
+            background: rgba(2, 6, 23, 0.86);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text);
+        }
+
+        .button-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.92rem 1.8rem;
+            border-radius: 999px;
+            border: none;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button-primary:hover,
+        .button-primary:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(37, 99, 235, 0.24);
+        }
+
+        .hero {
+            display: grid;
+            gap: 2.5rem;
+            align-items: center;
+            min-height: calc(100vh - 120px);
+            padding: 64px 0 56px;
+        }
+
+        .hero-copy {
+            max-width: 640px;
+        }
+
+        .hero-copy h1 {
+            font-size: clamp(2.8rem, 4vw, 4.5rem);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.2rem;
+            color: #f8fafc;
+        }
+
+        .hero-copy p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 42rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .hero-graphic {
+            position: relative;
+            min-height: 380px;
+            border-radius: 32px;
+            overflow: hidden;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32%),
+                        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(15, 23, 42, 0.92));
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-graphic::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, rgba(37, 99, 235, 0.1), transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-box {
+            position: absolute;
+            inset: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 1.6rem;
+            color: var(--text);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .stat-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 1rem;
+            color: #f8fafc;
+        }
+
+        .section-copy {
+            max-width: 720px;
+            color: var(--text-muted);
+            margin-bottom: 2.4rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(37, 99, 235, 0.35);
+        }
+
+        .card-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.2rem;
+            background: rgba(37, 99, 235, 0.14);
+            color: var(--blue);
+            font-size: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.85rem;
+            color: #f8fafc;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 3rem 0 2rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--blue);
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+            width: min(100%, 760px);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 0.8rem;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible {
+            color: var(--text);
+        }
+
+        @media (max-width: 860px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-graphic {
+                min-height: 320px;
+            }
+
+            .hero-box {
+                grid-template-columns: 1fr;
+                inset: 20px;
+            }
+
+            .page {
+                padding: 0 20px 40px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                gap: 1.4rem;
+                padding-top: 48px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-box {
+                inset: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <nav class="nav">
+                <a href="#" class="logo">Proxy</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+                <a href="#pricing" class="button-primary">Join Now</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <p style="color: var(--accent); font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem;">Crypto Investment</p>
+                    <h1>Proxy helps you grow capital with a secure crypto strategy.</h1>
+                    <p>Invest confidently in a platform built for modern crypto portfolios, clear reporting, and a focus on higher return potential.</p>
+                    <div class="hero-actions">
+                        <a href="#pricing" class="button-primary">Get Started</a>
+                        <a href="#features" class="button-secondary" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.92rem 1.8rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); color: var(--text); text-decoration: none; transition: background 0.2s ease;">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-graphic">
+                    <div class="hero-box">
+                        <article class="stat-card">
+                            <h3>Projected Growth</h3>
+                            <strong>2x income potential</strong>
+                            <p>Invest with a strategy designed to maximize long-term crypto returns.</p>
+                        </article>
+                        <article class="stat-card">
+                            <h3>Secure Holdings</h3>
+                            <strong>Bank-grade security</strong>
+                            <p>Protect capital with advanced vault and risk controls.</p>
+                        </article>
+                        <article class="stat-card">
+                            <h3>Global Access</h3>
+                            <strong>Worldwide markets</strong>
+                            <p>Access major crypto opportunities from a single platform.</p>
+                        </article>
+                        <article class="stat-card">
+                            <h3>Transparent Updates</h3>
+                            <strong>Live performance</strong>
+                            <p>Track earnings clearly with regular reports and dashboards.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="features">
+                <h2 class="section-title">Why choose Proxy?</h2>
+                <p class="section-copy">Proxy is engineered to help accredited and growth-focused investors engage with crypto intelligently. We combine strategy, security, and transparency to make investing simpler and more powerful.</p>
+                <div class="cards-grid">
+                    <article class="card">
+                        <span class="card-icon">🚀</span>
+                        <h3>Growth-focused portfolios</h3>
+                        <p>We allocate capital across vetted crypto assets with the aim of accelerating income growth.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon">🔒</span>
+                        <h3>Secure architecture</h3>
+                        <p>Every investment is protected with best-practice security and ongoing risk monitoring.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon">📊</span>
+                        <h3>Performance visibility</h3>
+                        <p>Receive clear, regular updates on returns and portfolio performance.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon">🤝</span>
+                        <h3>Trusted execution</h3>
+                        <p>We work with premium crypto partners and infrastructure providers for reliable execution.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="pricing">
+                <h2 class="section-title">Start investing with confidence</h2>
+                <p class="section-copy">Choose a plan that matches your goals. Proxy enables easy onboarding, secure deposits, and ongoing portfolio monitoring.</p>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Starter Plan</h3>
+                        <p>Ideal for first-time crypto investors looking for a simple, reliable entry point.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Growth Plan</h3>
+                        <p>Designed for investors targeting higher returns through diversified crypto exposure.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Premium Plan</h3>
+                        <p>Best for active investors who want premium support and advanced portfolio features.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-inner">
+                <a href="#" class="footer-logo">Proxy</a>
+                <div class="footer-links">
+                    <div>
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div>
+                        <h4>Platform</h4>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Support</a>
+                    </div>
+                    <div>
+                        <h4>Legal</h4>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+Proxy domain link placeholder
+
+Domain idea: proxy-site.example.com (replace with your real domain)
+
+Local dev URL (when running backend): http://127.0.0.1:3000/
+
+How to use once you have a domain:
+- Point DNS A/AAAA (or CNAME) to your server/host
+- Deploy the app so http://<your-domain>/ serves the same pages
+
+Routing supported by backend:
+- GET / -> Home.html
+- GET /signup -> signup.html
+- GET /register -> register.html
+- POST /signup -> /dashboard.html
+- POST /login -> /dashboard.html
+
